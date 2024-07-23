@@ -23,7 +23,7 @@ where
     T: DeserializeOwned,
 {
     let mut deserializer = Deserializer::from_wbem_class_obj(wbem_class_obj);
-    T::deserialize(&mut deserializer)
+    Ok(serde_path_to_error::deserialize(&mut deserializer)?)
 }
 
 struct WMIEnum<'a> {

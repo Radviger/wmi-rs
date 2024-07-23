@@ -1,5 +1,6 @@
 use serde::{de, ser};
 use std::fmt::{Debug, Display};
+use serde_path_to_error::Error;
 use thiserror::Error;
 
 #[derive(Debug, Error)]
@@ -62,6 +63,12 @@ impl de::Error for WMIError {
     #[cold]
     fn custom<T: Display>(msg: T) -> WMIError {
         Self::SerdeError(format!("{}", msg))
+    }
+}
+
+impl From<serde_path_to_error::Error<WMIError>> for WMIError {
+    fn from(e: Error<WMIError>) -> Self {
+        WMIError::SerdeError(format!("{}", e))
     }
 }
 

@@ -39,6 +39,7 @@ windows = { version = "0.52", features = [
 time = { version = "0.3", features = ["formatting", "parsing", "macros", "serde"], optional = true }
 chrono = { version = "0.4", features = ["clock", "std", "serde"], optional = true, default-features = false }
 serde = { version = "1.0", features = ["derive"] }
+serde_path_to_error = { version = "0.1" }
 futures = { version = "0.3" }
 thiserror = "^1"
 log = "0.4"
